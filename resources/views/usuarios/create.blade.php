@@ -22,26 +22,15 @@
                         <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="correo@ejemplo.com" required>
                         @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
-                   <div class="col-md-6">
-                        <label for="role_id" class="form-label">
-                            Rol <span class="text-danger">*</span>
-                        </label>
-
+                    <div class="col-md-6">
+                        <label for="role_id" class="form-label">Rol <span class="text-danger">*</span></label>
                         <select id="role_id" name="role_id" class="form-select @error('role_id') is-invalid @enderror" required>
                             <option value="">Seleccionar rol...</option>
-
                             @foreach($roles as $rol)
-                                <option value="{{ $rol->id }}" 
-                                    {{ old('role_id') == $rol->id ? 'selected' : '' }}>
-                                    {{ $rol->nombre }}
-                                </option>
+                                <option value="{{ $rol->id }}" {{ old('role_id') == $rol->id ? 'selected' : '' }}>{{ $rol->nombre }}</option>
                             @endforeach
-
                         </select>
-
-                        @error('role_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        @error('role_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
                     <div class="col-md-6">
                         <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
