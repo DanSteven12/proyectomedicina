@@ -63,6 +63,12 @@ class Kernel extends HttpKernel
         'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'verified'                  => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'rol.admin'                 => \App\Http\Middleware\EsAdministrador::class,
+        'rol.doctor'                => \App\Http\Middleware\EsDoctor::class,
+        'rol.recepcionista'         => \App\Http\Middleware\EsRecepcionista::class,
+        'rol.admin_recepcionista'   => \App\Http\Middleware\AccesoAdminORecepcionista::class,
+        'rol.admin_doctor'          => \App\Http\Middleware\AccesoNoRecepcionista::class,
+        'rol.citas'                 => \App\Http\Middleware\AccesoCitas::class,
     ];
 }

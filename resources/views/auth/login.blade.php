@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Iniciar sesión - Sistema de Gestión de Citas Médicas">
+    <title>Iniciar Sesión | SaludSystem</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: #0f1c2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: -20%;
+            width: 70%;
+            height: 120%;
+            background: radial-gradient(ellipse, rgba(13,110,253,0.15) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -10%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(ellipse, rgba(102,16,242,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 440px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-card {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+        }
+
+        .login-logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 24px rgba(13,110,253,0.35);
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .login-subtitle {
+            font-size: 0.85rem;
+            color: #6c8aaa;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            font-size: 0.83rem;
+            font-weight: 500;
+            color: #c9d6e3;
+            margin-bottom: 0.4rem;
+        }
+
+        .form-control {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.875rem;
+            padding: 0.65rem 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            background: rgba(255,255,255,0.09);
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13,110,253,0.2);
+            color: #ffffff;
+        }
+
+        .form-control::placeholder { color: #4a6a8a; }
+
+        .form-control.is-invalid {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 3px rgba(220,53,69,0.15);
+        }
+
+        .invalid-feedback { color: #ff6b7a; font-size: 0.78rem; }
+
+        .input-icon-wrapper { position: relative; }
+        .input-icon-wrapper .input-icon {
+            position: absolute;
+            left: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4a6a8a;
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+        .input-icon-wrapper .form-control { padding-left: 2.5rem; }
+
+        .btn-login {
+            background: linear-gradient(135deg, #0d6efd, #0856c7);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.75rem;
+            width: 100%;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(13,110,253,0.35);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(13,110,253,0.45);
+            background: linear-gradient(135deg, #2681ff, #0d6efd);
+        }
+
+        .form-check-input {
+            background-color: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            border-radius: 4px;
+        }
+        .form-check-input:checked {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        .form-check-label { font-size: 0.82rem; color: #6c8aaa; }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.78rem;
+            color: #4a6a8a;
+        }
+
+        .alert-danger {
+            background: rgba(220,53,69,0.15);
+            border: 1px solid rgba(220,53,69,0.3);
+            border-radius: 10px;
+            color: #ff6b7a;
+            font-size: 0.83rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+<div class="login-wrapper">
+    <div class="login-card">
+        <div class="login-logo">
+            <i class="bi bi-heart-pulse-fill"></i>
+        </div>
+        <h1 class="login-title">Login</h1>
+        <p class="login-subtitle">Centro de Gestión Médica — Inicia sesión para continuar</p>
+
+        @if($errors->any())
+        <div class="alert-danger">
+            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            {{ $errors->first() }}
+        </div>
+        @endif
+
+        @if(session('status'))
+        <div class="alert alert-success mb-3" style="font-size:0.83rem;">{{ session('status') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <div class="input-icon-wrapper">
+                    <i class="bi bi-envelope-fill input-icon"></i>
+                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                        value="{{ old('email') }}" placeholder="correo@ejemplo.com" required autofocus autocomplete="username">
+                    @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <div class="input-icon-wrapper">
+                    <i class="bi bi-lock-fill input-icon"></i>
+                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                        placeholder="••••••••" required autocomplete="current-password">
+                    @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="form-check mb-0">
+                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <label class="form-check-label" for="remember">Recordarme</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+            </button>
+        </form>
+
+        <div class="login-footer">
+            <i class="bi bi-shield-lock me-1"></i> Acceso restringido al personal autorizado
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
